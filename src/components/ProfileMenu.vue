@@ -18,7 +18,6 @@ const toast = useToast()
 const itemsBell = ref<INotificationBell[]>([])
 onMounted(async () => {
   await nextTick()
-  catsStore.getCatNotification()
   itemsBell.value = catsStore.catNotifications.map((el) => {
     return {
       label: `${el.status}:${el.time}`,
@@ -96,18 +95,7 @@ const createNotification = (data: INotification) => {
 </script>
 
 <template>
-  <Menubar class="border-none justify-content-end h-4rem" :model="!userStore.user ? menuItems : []">
-    <template #start v-if="userStore.user && catsStore.cats.length">
-      <MyButton
-        type="button"
-        @click="toggleBell"
-        label="History"
-        icon="pi pi-bell"
-        :badge="catsStore.catStatus"
-        badgeClass="p-badge-danger" />
-      <Menu ref="menuBell" :model="itemsBell" :popup="true"
-    /></template>
-    <template #end v-if="userStore.user">
+  
       <button
         @click="toggle"
         class="w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround"
@@ -122,8 +110,6 @@ const createNotification = (data: INotification) => {
         </div>
       </button>
       <TieredMenu ref="menu" :popup="true" :model="items" />
-    </template>
-  </Menubar>
 </template>
 
 <style scoped></style>

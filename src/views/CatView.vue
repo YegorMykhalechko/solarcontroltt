@@ -12,6 +12,8 @@ const route = useRoute()
 
 onMounted(async () => {
   await catsStore.getCat(route.params.id, 10)
+  catsStore.getCatActivityTime()
+  catsStore.getCatBirdCount()
   birdsPerDayData.value.datasets[0].data = catsStore.catBirdsCount
   hourlyActivityData.value.datasets[0].data = catsStore.catActivityTime
   images.value = catsStore.cat?.images as unknown[]

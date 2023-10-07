@@ -11,15 +11,20 @@ import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 
 import { useCatsStore } from '@/stores/cats'
+import { useLoginUserStore } from '@/stores/loginUser'
 
 import type { ICat } from '@/models/interface'
 
 let breeds: string[] = []
 const catsStore = useCatsStore()
+const userStore = useLoginUserStore()
 
 onMounted(async () => {
   await catsStore.getCatsBreed()
   await catsStore.getCats()
+  userStore.getUser()
+  catsStore.getCatStatus()
+  catsStore.getCatNotification()
   breeds = catsStore.catsBreed
 })
 
