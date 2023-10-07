@@ -54,6 +54,9 @@ export const useCatsStore = defineStore('cats', () => {
         detail: 'Cat was successfully added',
         life: 3000
       })
+      getCats()
+      getCatNotification()
+      getCatStatus()
     }
   }
 

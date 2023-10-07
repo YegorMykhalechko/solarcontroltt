@@ -7,7 +7,7 @@ import { useToast } from 'primevue/usetoast'
 import { useConfirm } from 'primevue/useconfirm'
 import { useLoginUserStore } from '@/stores/loginUser'
 import { useCatsStore } from '@/stores/cats'
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, watchEffect } from 'vue'
 import type { INotification, INotificationBell } from '@/models/interface'
 
 const userStore = useLoginUserStore()
@@ -16,9 +16,8 @@ const confirm = useConfirm()
 const toast = useToast()
 
 const itemsBell = ref<INotificationBell[]>([])
-onMounted(async () => {
-  await nextTick()
-  catsStore.getCatNotification()
+
+watchEffect(async () => {
   itemsBell.value = catsStore.catNotifications.map((el) => {
     return {
       label: `${el.status}:${el.time}`,
@@ -28,6 +27,14 @@ onMounted(async () => {
     }
   })
 })
+
+// watch(
+//   itemsBell,
+//   (newValue, oldValue) => {
+//     // виконується негайно, а потім знову, коли `source` змінюється
+//   },
+//   { immediate: true }
+// )
 
 const menuItems = ref([
   {

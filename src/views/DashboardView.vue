@@ -23,8 +23,6 @@ onMounted(async () => {
   await catsStore.getCatsBreed()
   await catsStore.getCats()
   userStore.getUser()
-  catsStore.getCatStatus()
-  catsStore.getCatNotification()
   breeds = catsStore.catsBreed
 })
 

@@ -11,6 +11,7 @@ const catsStore = useCatsStore()
 onMounted(() => {
   userStore.getUser()
   if (userStore.user) {
+    catsStore.getCats()
     catsStore.getCatStatus()
     catsStore.getCatNotification()
     catsStore.getCatActivityTime()
