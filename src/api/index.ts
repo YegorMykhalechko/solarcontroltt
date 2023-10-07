@@ -13,18 +13,10 @@ export const Cats = () => {
   return APIService.get('/breeds')
 }
 
-export const CatByBreed = (breed) => {
+export const CatByBreed = (breed: string) => {
   return APIService.get(`/breeds/${breed}`)
 }
 
-export const CatImages = (breed, limit = 0) => {
+export const CatImages = (breed: string, limit = 0) => {
   return APIService.get(`/images/search?limit=${limit}&breed_ids=${breed}`)
 }
-
-// export const Todos = () => {
-//   return APIService.get(`/todos`)
-// }
-
-// export const AddTodo = (data) => {
-//   return APIService.post(`/todos`, data)
-// }
